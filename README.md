@@ -1,2 +1,2 @@
 # tc-hbtn-java
-Primeiros exercícios Java
+Primeiros exercícios com Java
