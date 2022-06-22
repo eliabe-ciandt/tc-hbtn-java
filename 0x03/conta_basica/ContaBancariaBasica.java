@@ -1,14 +1,14 @@
 import exceptions.OperacaoInvalidaException;
 
 public class ContaBancariaBasica {
-    private String numeracao;
+    private final String numeracao;
     private double saldo;
     private double taxaJurosAnual;
 
     public ContaBancariaBasica(String numeracao, double taxaJurosAnual) {
         this.numeracao = numeracao;
-        this.saldo = 0;
         this.taxaJurosAnual = taxaJurosAnual;
+        this.saldo = 0;
     }
 
     public String getNumeracao() {
@@ -23,35 +23,40 @@ public class ContaBancariaBasica {
         return taxaJurosAnual;
     }
 
-
     public void depositar(double valor) throws OperacaoInvalidaException {
-        if(valor <= 0) {
-            throw new OperacaoInvalidaException("Valor para deposito deve ser maior que 0");
-        } else {
+        if (valor > 0) {
             this.saldo += valor;
+        } else {
+            throw new OperacaoInvalidaException("Valor para deposito deve ser maior que 0");
         }
     }
 
     public void sacar(double valor) throws OperacaoInvalidaException {
-        if(valor <= 0) {
-            throw new OperacaoInvalidaException("Valor de saque deve ser maior que 0");
-        } else if(valor > getSaldo()) {
-            throw new OperacaoInvalidaException("Valor de saque deve ser menor que o saldo atual");
+        if (valor > 0) {
+            if (valor > getSaldo()) {
+                throw new OperacaoInvalidaException("Valor de saque deve ser menor que o saldo atual");
+            } else {
+                this.saldo -= valor;
+            }
         } else {
-            this.saldo -= valor;
+            throw new OperacaoInvalidaException("Valor de saque deve ser maior que 0");
         }
     }
 
     public double calcularTarifaMensal() {
-        return ((getSaldo() * 0.1) < 10 ? (getSaldo() * 0.1) : 10);
+        double taxaSobreSaldo = getSaldo() * 0.1;
+        double taxaFixa = 10;
+        return (taxaSobreSaldo < taxaFixa ? taxaSobreSaldo : taxaFixa);
     }
 
     public double calcularJurosMensal() {
-        return (getSaldo() > 0 ? getSaldo() * ((getTaxaJurosAnual() / 12) / 100) : 0);
+        double jurosMensal = (getTaxaJurosAnual() / 12) / 100;
+        return (getSaldo() > 0 ? getSaldo() * jurosMensal : 0);
     }
 
     public void aplicarAtualizacaoMensal() {
-        saldo = getSaldo() - calcularTarifaMensal();
-        saldo = getSaldo() + calcularJurosMensal();
+        this.saldo = getSaldo() - calcularTarifaMensal() + calcularJurosMensal();
+//        saldo = getSaldo() - calcularTarifaMensal();
+//        saldo = getSaldo() + calcularJurosMensal();
     }
 }
