@@ -50,7 +50,6 @@ public class ListaTodo {
     }
 
     public void listarTarefas() {
-        String descricao = "";
         for(Tarefa tarefa: tarefas) {
             System.out.printf("[%s]  Id: %d - Descricao: %s\n", (tarefa.isEstahFeita() ? "X":" "), tarefa.getIdentificador(), tarefa.getDescricao());
         }
