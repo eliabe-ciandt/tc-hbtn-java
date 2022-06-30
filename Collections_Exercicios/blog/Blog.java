@@ -4,7 +4,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Blog {
-    List<Post> postagens = new ArrayList<Post>();
+    private List<Post> postagens;
 
     public Blog() {
         this.postagens = new ArrayList<Post>();
