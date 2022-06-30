@@ -87,7 +87,7 @@ public class Blog {
 
         for(Post post: postagens) {
             if(!todosPostsPorAutor.containsKey(post.getAutor())) {
-                Set<Post> temp = new HashSet<>();
+                Set<Post> temp = new TreeSet<>();
                 temp.add(post);
                 todosPostsPorAutor.put(post.getAutor(), temp);
             } else {
