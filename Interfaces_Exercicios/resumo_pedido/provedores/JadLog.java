@@ -21,7 +21,7 @@ public class JadLog implements ProvedorFrete{
     }
 
     @Override
-    public TipoProvedorFrete obterTipoProvedor() {
+    public TipoProvedorFrete obterTipoProvedorFrete() {
         return tipoProvedorFrete;
     }
 }
