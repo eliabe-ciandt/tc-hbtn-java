@@ -20,4 +20,9 @@ public class Loggi implements ProvedorFrete{
         Frete freteRetornado = new Frete(valorDoFrete, getTipoProvedorFrete());
         return freteRetornado;
     }
+
+    @Override
+    public TipoProvedorFrete obterTipoProvedor() {
+        return tipoProvedorFrete;
+    }
 }
