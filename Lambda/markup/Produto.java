@@ -38,6 +38,6 @@ public class Produto {
 
     public Supplier<Double> precoComMarkup = () -> getPreco() * (1 + (getPercentualMarkup() / 100));
 
-    public Consumer<Double> atualizarMarkup = n -> setPercentualMarkup(n);
+    Consumer<Double> atualizarMarkup = n -> setPercentualMarkup(n);
 
 }
