@@ -5,9 +5,9 @@ public class Produto {
     private String nome;
     private double preco;
     private double percentualMarkup;
-    public Supplier<Double> precoComMarkup = () -> getPreco() * (1 + (getPercentualMarkup() / 100));
+    Supplier<Double> precoComMarkup = () -> getPreco() * (1 + (getPercentualMarkup() / 100));
 
-    public Consumer<Double> atualizarMarkup  = n -> setPercentualMarkup(n);
+    Consumer<Double> atualizarMarkup  = n -> setPercentualMarkup(n);
 
     public Produto(double preco, String nome) {
         this.nome = nome;
