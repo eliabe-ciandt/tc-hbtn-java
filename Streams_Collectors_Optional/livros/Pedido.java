@@ -1,5 +1,3 @@
-import provedores.Frete;
-
 import java.util.List;
 
 public class Pedido {
