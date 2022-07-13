@@ -1,8 +1,7 @@
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
-public class SerializarEstudantes<T> extends ArrayList<Estudante>{
+public class SerializarEstudantes<T>{
     private String nomeArquivo;
 
     public SerializarEstudantes(String nomeArquivo) {
@@ -12,6 +11,7 @@ public class SerializarEstudantes<T> extends ArrayList<Estudante>{
     public String getNomeArquivo() {
         return nomeArquivo;
     }
+
 
     public void serializar(List<Estudante> estudantes) {
         try {
@@ -29,13 +29,15 @@ public class SerializarEstudantes<T> extends ArrayList<Estudante>{
         }
     }
 
-    public List<Estudante> desserializar() {
-        List<Estudante> estudantes = null;
+    @SuppressWarnings("unchecked")
+    public List<T> desserializar() {
+        List<T> estudantes = null;
         try {
             FileInputStream file = new FileInputStream(getNomeArquivo());
             ObjectInputStream in = new ObjectInputStream(file);
 
-            estudantes = (List<Estudante>) in.readObject();
+            Object obj =  in.readObject();
+            estudantes = (List<T>) obj;
 
             in.close();
             file.close();
