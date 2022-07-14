@@ -101,7 +101,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.techcamps.financeiro.FinanceiroMain</mainClass>
+                <mainClass>FinanceiroMain</mainClass>
               </manifest>
             </archive>
             <descriptorRefs>
